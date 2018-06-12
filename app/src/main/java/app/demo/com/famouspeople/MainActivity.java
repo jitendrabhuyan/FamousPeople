@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
     FloatingActionButton fab;
-    ArrayList<String> users;
+    ArrayList<User> users;
 
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mRecyclerViewAdapter;
@@ -29,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        users = new ArrayList<String>();
+        users = new ArrayList<User>();
         for (int i = 0; i < 100; i++) {
-            users.add("Jitendra #"+i);
+            User user = new User("Jitendra #"+i,"Bhuyan","bhuyan.jitendra@gmail.com");
+            users.add(user);
         }
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
