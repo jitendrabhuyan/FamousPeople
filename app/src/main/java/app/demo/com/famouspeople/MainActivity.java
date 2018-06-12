@@ -1,5 +1,6 @@
 package app.demo.com.famouspeople;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"floating action button clicked");
+                startActivity(new Intent(MainActivity.this,CreateUser.class));
             }
         });
 
