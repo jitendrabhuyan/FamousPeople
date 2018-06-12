@@ -9,13 +9,14 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
 
-    ArrayList<User> users;
+    List<User> users;
 
-    public UserAdapter(ArrayList<User> users) {
+    public UserAdapter(List<User> users) {
         this.users = users;
 
     }

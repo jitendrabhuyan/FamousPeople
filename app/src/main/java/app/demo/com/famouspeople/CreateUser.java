@@ -1,5 +1,7 @@
 package app.demo.com.famouspeople;
 
+import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,10 +31,14 @@ public class CreateUser extends AppCompatActivity {
         lastName = findViewById(R.id.last_name);
         email = findViewById(R.id.email_id);
         saveUser = findViewById(R.id.add_user_button);
+
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Production").allowMainThreadQueries().build();
         saveUser.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.d(TAG,firstName.getText().toString());
+                db.userDao().InsertAll(new User(firstName.getText().toString(),lastName.getText().toString(),email.getText().toString()));
+                startActivity(new Intent(CreateUser.this,MainActivity.class));
             }
         });
 

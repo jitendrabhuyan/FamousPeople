@@ -1,5 +1,6 @@
 package app.demo.com.famouspeople;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        users = new ArrayList<User>();
+        /*users = new ArrayList<User>();
         for (int i = 0; i < 100; i++) {
             User user = new User("Jitendra #"+i,"Bhuyan","bhuyan.jitendra@gmail.com");
             users.add(user);
-        }
+        }*/
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Production").allowMainThreadQueries().build();
+        List<User> users = db.userDao().getAllUsers();
+
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerViewAdapter = new UserAdapter(users);
